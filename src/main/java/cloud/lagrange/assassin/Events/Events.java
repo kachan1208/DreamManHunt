@@ -73,7 +73,7 @@ public class Events implements Listener {
     @EventHandler(priority= EventPriority.HIGH)
     public void onPlayerRespawnEvent(PlayerRespawnEvent e) {
     	Player player = e.getPlayer();
-    	if (Global.Players.stream().anyMatch(p -> p.role == Role.ASSASSIN && 
+    	if (Global.Players.stream().anyMatch(p -> p.role == Role._ASSASSIN_ && 
     		p.UUID.equals(player.getUniqueId()))) {
     		
     		PlayerInventory inventory = player.getInventory();
