@@ -16,6 +16,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.UUID;
 
@@ -34,8 +35,12 @@ public class Commands implements CommandExecutor {
             if (args.length == 3) {
                 Proccess(sender, args[0], args[1], args[2]);
                 return true;
+            } else if(args.length == 2 && args[0] == "start") {
+            	BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+            	Timer timer = new Timer(this.parent, Integer.parseInt(args[1]));
+            	scheduler.runTaskTimer(this.parent, timer, 0, 20); //0 delay, period 20 ticks - 1 sec
             } else {
-                sender.sendMessage(ChatColor.RED + "Invalid arguments. Please use /assassin <assassin/speedrunner> <add/remove> <player>. /assassin on its own will display debug info and reload config");
+                sender.sendMessage(ChatColor.RED + "Invalid arguments. Please use /assassin <assassin/speedrunne/start> <add/remove/number> <player>. /assassin on its own will display debug info and reload config");
                 sender.sendMessage("Current: ");
                 Global.Players.stream().forEach(p -> sender.sendMessage(p.UUID + " as " + p.role));
                 new Config(parent);

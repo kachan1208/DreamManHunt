@@ -17,6 +17,7 @@ public final class Assassin extends JavaPlugin {
         new Worker(this);
         new Config(this);
         
+        
         Bukkit.getLogger().info("Assassin plugin started.");
     }
 
