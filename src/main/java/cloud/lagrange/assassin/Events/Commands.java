@@ -35,12 +35,12 @@ public class Commands implements CommandExecutor {
             if (args.length == 3) {
                 Proccess(sender, args[0], args[1], args[2]);
                 return true;
-            } else if(args.length == 2 && args[0] == "start") {
-            	BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+            } else if(args.length == 2 && args[0].equals("start")) {
             	Timer timer = new Timer(this.parent, Integer.parseInt(args[1]));
-            	scheduler.runTaskTimer(this.parent, timer, 0, 20); //0 delay, period 20 ticks - 1 sec
+            	timer.start();
+            	return true;
             } else {
-                sender.sendMessage(ChatColor.RED + "Invalid arguments. Please use /assassin <assassin/speedrunne/start> <add/remove/number> <player>. /assassin on its own will display debug info and reload config");
+                sender.sendMessage(ChatColor.RED + "Invalid arguments. Please use /assassin <assassin/speedrunner/start> <add/remove/number> <player>. /assassin on its own will display debug info and reload config");
                 sender.sendMessage("Current: ");
                 Global.Players.stream().forEach(p -> sender.sendMessage(p.UUID + " as " + p.role));
                 new Config(parent);
